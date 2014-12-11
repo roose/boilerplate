@@ -1,10 +1,10 @@
 /* Base&Grid */
 
 a {
-	color: #333;
+	color: #ff503f;
 }
 a:hover {
-	color: #ff3232;
+	color: #ff3d3d;
 }
 
 .clearfix:before, .clearfix:after, .container12:before, .container12:after {
@@ -46,7 +46,7 @@ a:hover {
 	background: url("img/icons.png") 0 0 no-repeat;
 }
 
-.container12 {
+.container {
     margin-left: auto;
     margin-right: auto;
     width: 960px;
