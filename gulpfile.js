@@ -49,9 +49,9 @@ gulp.task('copy:html', function(){
 
 // Copy and optimize images
 gulp.task('copy:images', function() {
-  return gulp.src('images/*')
+  return gulp.src('img/*')
     .pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
-    .pipe(gulp.dest('dist/images'));
+    .pipe(gulp.dest('dist/img'));
 });
 
 // Clean, delete dist folder
