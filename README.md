@@ -12,14 +12,16 @@ npm install
 ## Folder structure
 
 ```
-|--src              --> source folder
-|  |--css           --> styles
-|  |--img           --> images
-|  |--js            --> javascripts
-|  |  |--libs       --> js libs, jquery etc
-|  |--index.html    --> base layout file
-|--gulpfile.js      --> gulp tasks
-|--package.json     --> gulp config
+├───css             --> styles
+├───dist            --> production folder
+├───images          --> images
+├───js              --> javascripts
+│   └───libs        --> js libs, jquery etc
+├───node_modules    --> node modules
+│
+├───gulpfile.js     --> gulp tasks
+├───index.html      --> base layout file
+└───package.json    --> gulp config
 ```
 
 ##Gulp commands

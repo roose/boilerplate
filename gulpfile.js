@@ -4,88 +4,91 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var imagemin = require('gulp-imagemin');
 var minifycss = require('gulp-minify-css');
-var notify = require('gulp-notify');
 var clean = require('gulp-clean');
 var livereload = require('gulp-livereload');
 var zip = require('gulp-zip');
-// var notifier = require('node-notifier');
 
-// CSS concat to style.css and minify to style.min.css
+
+// concat and minify css files to style.css, style.min.css
 gulp.task('css', function() {
-  return gulp.src(['src/css/reset.css', 'src/css/*.css', 'src/css/main.css', '!src/css/style.css', '!src/css/style.min.css'])
+  return gulp.src(['css/reset.css', 'css/main.css', '!css/style.css', '!css/style.min.css'])
     .pipe(concat('style.css'))
-    .pipe(gulp.dest('src/css'))
+    .pipe(gulp.dest('css'))
     .pipe(rename({suffix: '.min'}))
     .pipe(minifycss({noAdvanced: true}))
-    .pipe(gulp.dest('src/css'));
+    .pipe(gulp.dest('css'));
 });
 
 // Fonts
 
-// JS minify to default.min.js
+// minify js files to default.min.js
 gulp.task('js', function() {
-  return gulp.src('src/js/default.js')
+  return gulp.src('js/default.js')
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
-    .pipe(gulp.dest('src/js'));
+    .pipe(gulp.dest('js'));
 });
 
-// Copy CSS
-gulp.task('copy:css', function() {
-  return gulp.src(['src/css/style.css', 'src/css/style.min.css'])
+// concat, minify and copy CSS to dist folder
+gulp.task('copy:css', ['css'], function() {
+  return gulp.src(['css/style.css', 'css/style.min.css'])
     .pipe(gulp.dest('dist/css'));
 });
 
-// Copy JS
-gulp.task('copy:js', function() {
-  return gulp.src('src/js/**/*.js')
+// minify and copy JS to dist folder
+gulp.task('copy:js', ['js'], function() {
+  return gulp.src('js/**/*.js')
     .pipe(gulp.dest('dist/js'));
 });
 
 // Copy HTML
 gulp.task('copy:html', function(){
-  return gulp.src('src/*.html')
+  return gulp.src('*.html')
     .pipe(gulp.dest('dist'));
 });
 
-// Copy Images
+// Copy and optimize images
 gulp.task('copy:images', function() {
-  return gulp.src('src/img/*')
+  return gulp.src('images/*')
     .pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
-    .pipe(gulp.dest('dist/img'));
+    .pipe(gulp.dest('dist/images'));
 });
 
-// Clean
+// Clean, delete dist folder
 gulp.task('clean', function() {
   return gulp.src('dist', {read: false})
     .pipe(clean());
 });
 
-// Build
+/*
+Build
+  1. delete dist folder
+  2. copy html files to dist
+  3. copy css files to dist
+  4. copy images to dist
+  5. copy js files to dist
+*/
 gulp.task('build', ['clean'], function(){
   gulp.start(['copy:html', 'copy:css', 'copy:images', 'copy:js']);
-  // notifier.notify({title: 'Buid...', message: '...done!'}, function (err, response) {
-  //   console.log('Buid done!');
-  // });
 });
 
-// Zip dist folder
+// pack dist folder to archive.zip
 gulp.task('zip', function () {
     return gulp.src('dist/**/*')
         .pipe(zip('archive.zip'))
         .pipe(gulp.dest('.'));
 });
 
-// Watch
+// Watch task
 gulp.task('watch', function() {
 
-  gulp.watch('src/css/*.css', ['css']);
-  gulp.watch('src/js/**/*.js', ['js']);
+  gulp.watch('css/*.css', ['css']);
+  gulp.watch('js/**/*.js', ['js']);
 
   // Create LiveReload server
   livereload.listen();
 
-  // Watch any files in dist/, reload on change
-  gulp.watch(['src/*.html', 'src/js/**/*.js', 'src/css/*.css']).on('change', livereload.changed);
+  // Watch any html, js, css files, reload on change
+  gulp.watch(['*.html', 'js/**/*.js', 'css/style.min.css']).on('change', livereload.changed);
 
 });
