@@ -1,6 +1,6 @@
 {
   "name": "myproject",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "myproject",
   "main": "gulpfile.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "gulp-imagemin": "^2.1.0",
     "gulp-minify-css": "^0.3.11",
     "gulp-livereload": "^2.1.1",
-    "gulp-clean": "^0.3.1",
+    "rimraf": "^2.3.2",
     "gulp-zip": "^2.0.2"
   }
 }

@@ -43,7 +43,7 @@ a:hover {
 	display: block;
 	width: 16px;
 	height: 16px;
-	background: url("img/icons.png") 0 0 no-repeat;
+	background: url("../img/icons.png") 0 0 no-repeat;
 }
 
 .container {

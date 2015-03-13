@@ -4,7 +4,7 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var imagemin = require('gulp-imagemin');
 var minifycss = require('gulp-minify-css');
-var clean = require('gulp-clean');
+var rimraf = require('rimraf');
 var livereload = require('gulp-livereload');
 var zip = require('gulp-zip');
 
@@ -55,9 +55,8 @@ gulp.task('copy:images', function() {
 });
 
 // Clean, delete dist folder
-gulp.task('clean', function() {
-  return gulp.src('dist', {read: false})
-    .pipe(clean());
+gulp.task('clean', function(cb){
+  rimraf('./dist', cb);
 });
 
 /*
