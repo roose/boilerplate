@@ -1,31 +1,40 @@
 var gulp = require('gulp');
+var autoprefixer = require('autoprefixer-core');
+var vars = require('postcss-simple-vars');
+var colorFunction = require("postcss-color-function")
 
-var plugins = require('gulp-load-plugins')();
+var $ = require('gulp-load-plugins')();
 
 // errors handling and notify
 var shitHappens = function(err) {
-  plugins.notify.onError("Error: <%= error.message %>")(err);
+  $.notify.onError("Error: <%= error.message %>")(err);
   this.emit('end');
 };
 
 // concat and minify css files to style.css, style.min.css
 gulp.task('css', function() {
+  var processors = [
+      autoprefixer({browsers: ['> 1%']}),
+      vars,
+      colorFunction()
+  ];
   return gulp.src('css/main.css')
-    .pipe(plugins.plumber({errorHandler:shitHappens}))
-    .pipe(plugins.rigger())
-    .pipe(plugins.rename('style.css'))
+    .pipe($.plumber({errorHandler:shitHappens}))
+    .pipe($.rigger())
+    .pipe($.postcss(processors))
+    .pipe($.rename('style.css'))
     .pipe(gulp.dest('css'))
-    .pipe(plugins.rename({suffix: '.min'}))
-    .pipe(plugins.minifyCss({noAdvanced: true}))
+    .pipe($.rename({suffix: '.min'}))
+    .pipe($.minifyCss({noAdvanced: true}))
     .pipe(gulp.dest('css'));
 });
 
 // minify js files to default.min.js
 gulp.task('js', function() {
   return gulp.src('js/default.js')
-    .pipe(plugins.plumber({errorHandler:shitHappens}))
-    .pipe(plugins.rename({suffix: '.min'}))
-    .pipe(plugins.uglify())
+    .pipe($.plumber({errorHandler:shitHappens}))
+    .pipe($.rename({suffix: '.min'}))
+    .pipe($.uglify())
     .pipe(gulp.dest('js'));
 });
 
@@ -50,7 +59,7 @@ gulp.task('copy:html', function(){
 // Copy and optimize images
 gulp.task('copy:images', function() {
   return gulp.src('img/*')
-    .pipe(plugins.imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
+    .pipe($.imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
     .pipe(gulp.dest('dist/img'));
 });
 
@@ -74,20 +83,20 @@ gulp.task('build', ['clean'], function(){
 // pack dist folder to archive.zip
 gulp.task('zip', function () {
     return gulp.src('dist/**/*')
-        .pipe(plugins.zip('archive.zip'))
+        .pipe($.zip('archive.zip'))
         .pipe(gulp.dest('.'));
 });
 
 // Watch task
 gulp.task('watch', function() {
 
-  gulp.watch(['css/*.css', '!css/style.css', '!css/style.min.css'], ['css']);
+  gulp.watch(['css/**/*.css', '!css/style.css', '!css/style.min.css'], ['css']);
   gulp.watch(['js/**/*.js', '!js/default.min.js'], ['js']);
 
   // Create LiveReload server
-  plugins.livereload.listen();
+  $.livereload.listen();
 
   // Watch any html, js, css files, reload on change
-  gulp.watch(['*.html', 'js/default.min.js', 'css/style.min.css']).on('change', plugins.livereload.changed);
+  gulp.watch(['*.html', 'js/default.min.js', 'css/style.min.css']).on('change', $.livereload.changed);
 
 });

@@ -6,7 +6,7 @@ CSS/HTML Boilerplate for new project
 ## Install Dependencies
 
 ```
-npm install
+npm i
 ```
 
 ## Folder structure
@@ -14,7 +14,7 @@ npm install
 ```
 ├───css             --> styles
 ├───dist            --> production folder
-├───images          --> images
+├───img             --> images
 ├───js              --> javascripts
 │   └───libs        --> js libs, jquery etc
 ├───node_modules    --> node modules

@@ -1,0 +1,15 @@
+/* Colors */
+$primary: #4a5db9;
+$secondary: #ff9c00;
+$default: #262626;
+$gray: #808080;
+$lightgray: #b3b3b3;
+$white: #fff;
+$border: #d6d6d6;
+
+/* Paths */
+$img: ../img;
+$icons: '../img/icons.png';
+
+/* Other */
+$bdrs: 3px;
