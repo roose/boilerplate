@@ -25,7 +25,8 @@ gulp.task('css', function() {
     .pipe($.rename('style.css'))
     .pipe(gulp.dest('css'))
     .pipe($.rename({suffix: '.min'}))
-    .pipe($.minifyCss({noAdvanced: true}))
+    // .pipe($.minifyCss({noAdvanced: true}))
+    .pipe($.cleanCss({advanced: false}))
     .pipe(gulp.dest('css'));
 });
 
@@ -39,7 +40,11 @@ gulp.task('js', function() {
 });
 
 // concat, minify and copy CSS to dist folder
-gulp.task('copy:css', ['css'], function() {
+gulp.task('copy:csslibs', ['css'], function() {
+  return gulp.src(['css/libs/**'], {base: '.'})
+    .pipe(gulp.dest('dist'));
+});
+gulp.task('copy:css', ['copy:csslibs'], function() {
   return gulp.src(['css/style.css', 'css/style.min.css'])
     .pipe(gulp.dest('dist/css'));
 });
@@ -63,6 +68,12 @@ gulp.task('copy:images', function() {
     .pipe(gulp.dest('dist/img'));
 });
 
+// Copy fonts
+gulp.task('copy:fonts', function() {
+  return gulp.src('fonts/*')
+    .pipe(gulp.dest('dist/fonts'));
+});
+
 // Clean, delete dist folder
 gulp.task('clean', function (done) {
   require('del')(['./dist'], done);
@@ -77,7 +88,7 @@ Build
   5. copy js files to dist
 */
 gulp.task('build', ['clean'], function(){
-  gulp.start(['copy:html', 'copy:css', 'copy:images', 'copy:js']);
+  gulp.start(['copy:html', 'copy:css', 'copy:images', 'copy:js', 'copy:fonts']);
 });
 
 // pack dist folder to archive.zip
