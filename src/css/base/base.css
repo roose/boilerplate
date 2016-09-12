@@ -108,6 +108,7 @@
 body {
   min-width: 960px;
   font-size: 14px;
+  background-color: #ffa;
 }
 a {
   color: $primary;

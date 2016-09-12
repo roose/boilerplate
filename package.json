@@ -1,6 +1,6 @@
 {
   "name": "boilerplate",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "boilerplate",
   "main": "gulpfile.js",
   "repository": {
@@ -11,24 +11,27 @@
     "name": "roose",
     "url": "https://github.com/roose"
   },
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
-    "autoprefixer-core": "^5.1.9",
-    "del": "^1.1.1",
-    "gulp": "^3.8.10",
-    "gulp-concat": "^2.4.2",
-    "gulp-imagemin": "^2.1.0",
-    "gulp-livereload": "^2.1.1",
-    "gulp-load-plugins": "^0.8.1",
-    "gulp-clean-css": "^2.0.7",
+    "autoprefixer": "^6.4.1",
+    "browser-sync": "^2.15.0",
+    "csswring": "^5.1.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-changed": "^1.3.2",
+    "gulp-imagemin": "^3.0.3",
+    "gulp-load-plugins": "^1.3.0",
     "gulp-notify": "^2.2.0",
-    "gulp-plumber": "^1.0.0",
-    "gulp-postcss": "^5.1.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^6.2.0",
     "gulp-rename": "^1.2.0",
-    "gulp-rigger": "^0.5.8",
-    "gulp-uglify": "^1.0.2",
-    "gulp-zip": "^2.0.2",
-    "postcss-color-function": "^1.2.0",
-    "postcss-simple-vars": "^0.2.4"
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-watch": "^4.3.9",
+    "gulp-zip": "^3.2.0",
+    "jquery": "^1.12.4",
+    "normalize-css": "^2.3.1",
+    "precss": "^1.4.0",
+    "slick-carousel": "^1.6.0"
   }
 }
