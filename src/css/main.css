@@ -1,0 +1,11 @@
+@import "../../node_modules/normalize-css/normalize.css";
+@import "../../node_modules/slick-carousel/slick/slick.css";
+
+@import "base/vars.css";
+@import "base/base.css";
+
+@import "parts/header.css";
+@import "parts/footer.css";
+@import "parts/sidebar.css";
+
+@import "pages/home.css";
