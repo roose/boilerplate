@@ -1,7 +1,6 @@
-boilerplate
-===========
+# boilerplate
 
-CSS/HTML Boilerplate for new project
+CSS/HTML Boilerplate for new project using [PostCSS](https://github.com/postcss/postcss), [PreCSS](https://github.com/jonathantneal/precss)
 
 ## Install Dependencies
 
@@ -12,16 +11,25 @@ npm i
 ## Folder structure
 
 ```
-├───css             --> styles
-├───dist            --> production folder
-├───img             --> images
-├───js              --> javascripts
-│   └───libs        --> js libs, jquery etc
-├───node_modules    --> node modules
-│
-├───gulpfile.js     --> gulp tasks
-├───index.html      --> base layout file
-└───package.json    --> gulp config
+|-- gulpfile.js
+|-- package.json
+`-- src
+    |-- css
+    |   |-- base
+    |   |   |-- base.css
+    |   |   `-- vars.css
+    |   |-- main.css
+    |   |-- pages
+    |   |   `-- home.css
+    |   `-- parts
+    |       |-- footer.css
+    |       |-- header.css
+    |       `-- sidebar.css
+    |-- img
+    |   `-- icons.png
+    |-- index.html
+    `-- js
+        `-- main.js
 ```
 
 ##Gulp commands
@@ -36,10 +44,10 @@ Delete `dist` folder, copy all files to `dist` folder, minify images
 gulp zip
 ```
 
-Zip all files in `dist` folder to `archive.zip`
+Zip all files in `dist` folder to `pkg.name.zip`
 
 ```
 gulp watch
 ```
 
-Watch changes, minify, concat css, minify js and reload browser
+Watch changes and reload browser
