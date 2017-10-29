@@ -1,15 +1,29 @@
 /* Colors */
-$primary: #4a5db9;
-$secondary: #ff9c00;
-$default: #262626;
+$prime: #009ebc;
+$second: #4c9787;
+$pink: #e869c1;
+$default: #191e27;
 $gray: #808080;
 $lightgray: #b3b3b3;
 $white: #fff;
 $border: #d6d6d6;
+$default-font:  Arial, Tahoma, sans-serif;
+$head-font: "Roboto Slab", Arial, Tahoma, sans-serif;
 
-/* Paths */
-$img: ../img;
-$icons: '../img/icons.png';
+@define-extend dib {
+  display: inline-block;
+  vertical-align: middle;
+}
+@define-extend clearul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+@define-extend shorttrans {
+  transition: all .3s;
+}
 
-/* Other */
-$bdrs: 3px;
+$sm: (min-width: 480px); /* small >= 480 */
+$md: (min-width: 768px); /* medium >= 768 */
+$lg: (min-width: 992px); /* large >= 998 */
+$xl: (min-width: 1200px); /* extra large >= 1200 */

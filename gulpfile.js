@@ -116,10 +116,16 @@ gulp.task('fonts', () => {
     .pipe(gulp.dest('./dist/fonts/'));
 });
 
-// Copy html
+// Build html
 gulp.task('html', () => {
   return gulp.src('./src/*.html')
-    .pipe($.changed('./dist/'))
+    .pipe($.plumber({ errorHandler:shitHappens }))
+    // .pipe($.changed('./dist/'))
+    .pipe($.fileInclude({
+      prefix: '@@',
+      basepath: '@file',
+      indent: true,
+    }))
     .pipe(gulp.dest('./dist/'));
 });
 
