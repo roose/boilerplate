@@ -1,6 +1,6 @@
 {
   "name": "boilerplate",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "boilerplate markup",
   "main": "gulpfile.js",
   "repository": {

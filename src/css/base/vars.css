@@ -10,20 +10,38 @@ $border: #d6d6d6;
 $default-font:  Arial, Tahoma, sans-serif;
 $head-font: "Roboto Slab", Arial, Tahoma, sans-serif;
 
-@define-extend dib {
-  display: inline-block;
-  vertical-align: middle;
-}
-@define-extend clearul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-@define-extend shorttrans {
-  transition: all .3s;
-}
-
 $sm: (min-width: 480px); /* small >= 480 */
 $md: (min-width: 768px); /* medium >= 768 */
 $lg: (min-width: 992px); /* large >= 998 */
 $xl: (min-width: 1200px); /* extra large >= 1200 */
+
+@mixin dib {
+  display: inline-block;
+  vertical-align: middle;
+}
+@mixin clearul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+@mixin shorttrans {
+  transition: all .3s;
+}
+
+
+@mixin container {
+  display: flex;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  justify-content: space-between;
+  @media $md {
+    width: 720px;
+  }
+  @media $lg {
+    width: 960px;
+  }
+  @media $xl {
+    width: 1140px;
+  }
+}

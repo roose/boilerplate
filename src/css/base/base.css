@@ -17,23 +17,6 @@ body.unscrollable {
   }
 }
 
-.container {
-  display: flex;
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
-  justify-content: space-between;
-  @media ($md) {
-    width: 720px;
-  }
-  @media ($lg) {
-    width: 960px;
-  }
-  @media ($xl) {
-    width: 1140px;
-  }
-}
-
 a {
   color: #000;
   transition: all .3s;
@@ -88,7 +71,7 @@ select {
   display: flex;
   align-items: center;
   text-decoration: none !important;
-  @extend shorttrans;
+  @include shorttrans;
   svg {
     fill: #fff;
     width: 15px;
