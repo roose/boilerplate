@@ -32,7 +32,7 @@ npm i
         `-- main.js
 ```
 
-##Gulp commands
+## Gulp commands
 
 ```
 gulp build

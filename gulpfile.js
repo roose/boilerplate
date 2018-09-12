@@ -91,7 +91,7 @@ gulp.task('icons', () => {
     .pipe($.svgSymbols({
       title: false,
       id: 'icon_%f',
-      className: '.%f',
+      class: '.%f',
       templates: [
         'default-svg'
       ]
@@ -135,9 +135,13 @@ gulp.task('clean', () => {
 });
 
 // Build
-gulp.task('build', ['clean'], () => {
-  gulp.start(['build:css', 'img', 'icons', 'libs', 'js', 'fonts', 'html']);
-});
+gulp.task(
+  'build',
+  gulp.series(
+    'clean',
+    gulp.parallel('build:css', 'img', 'icons', 'libs', 'js', 'fonts', 'html')
+  )
+);
 
 const correctNumber = number => number < 10 ? '0' + number : number;
 
@@ -165,17 +169,17 @@ gulp.task('zip', () => {
 // Watch task
 gulp.task('watch', () => {
 
-  $.watch('./src/css/**/*.css', () => { gulp.start('css') });
+  $.watch('./src/css/**/*.css', gulp.series('css'));
 
-  $.watch('./src/js/**/*.js', () => { gulp.start('js') });
+  $.watch('./src/js/**/*.js', gulp.series('js'));
 
-  $.watch('./src/*.html', () => { gulp.start('html') });
+  $.watch('./src/**/*.html', gulp.series('html'));
 
-  $.watch(paths.fonts, () => { gulp.start('fonts') });
+  $.watch(paths.fonts, gulp.series('fonts'));
 
-  $.watch(paths.img, () => { gulp.start('img') });
+  $.watch(paths.img, gulp.series('img'));
 
-  $.watch(paths.icons, () => { gulp.start('icons') });
+  $.watch(paths.icons, gulp.series('icons'));
 
   browserSync.init({
     files:   ['./dist/**/*', '!dist/**/*.map'],
