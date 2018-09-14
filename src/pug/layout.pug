@@ -1,0 +1,40 @@
+//- Стандартный шаблон страницы
+
+include mixins.pug
+
+doctype html
+html(class='no-js  page', lang='ru')
+
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='format-detection', content='telephone=no')
+    meta(name='format-detection', content='date=no')
+    meta(name='format-detection', content='address=no')
+    meta(name='format-detection', content='email=no')
+    meta(content='notranslate', name='google')
+
+    block meta
+      title Home
+
+    block head
+      link(rel='stylesheet', href='css/style.min.css')
+      script.
+        document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+
+  body
+    noscript У вас отключен JavaScript. Это пугает.
+
+    .page__inner
+      .page__content
+        block header
+          p «шапка»
+        block content
+          p содержимое страницы
+      //Bla
+      .page__footer-wrapper
+        block footer
+          p «подвал»
+
+    block page-bottom
+      script(src='js/script.min.js')
